@@ -24,7 +24,7 @@ class FbaService extends BaseService implements FbaInterface
     public function deliveryPlanCreate(array $params, array $header = [])
     {
         $response = $this->httpClient->post($this->driver, '/api/fba/deliveryPlan/create.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
@@ -32,7 +32,7 @@ class FbaService extends BaseService implements FbaInterface
     public function createShipment(array $params, array $header = [])
     {
         $response = $this->httpClient->post($this->driver, '/api/fbaShipment/createShipment.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }

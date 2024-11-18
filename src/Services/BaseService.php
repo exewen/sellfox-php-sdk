@@ -7,7 +7,7 @@ use Exewen\Sellfox\Exception\SellfoxException;
 
 class BaseService
 {
-    private $responseSuccessCode = 200;
+    private $responseSuccessCode = 0;
 
     /**
      * 通用响应检查

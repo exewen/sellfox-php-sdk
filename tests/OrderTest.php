@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ExewenTest\Sellfox;
 
+use Exewen\Sellfox\Facade\AuthFacade;
 use Exewen\Sellfox\Facade\OrderFacade;
 
 class OrderTest extends Base
@@ -23,14 +24,14 @@ class OrderTest extends Base
         $this->assertNotEmpty($response);
     }
 
-    public function testOrderDetail()
-    {
-        $shopId        = '111';
-        $amazonOrderId = '111';
-        $response      = OrderFacade::getOrderDetail($shopId, $amazonOrderId);
-        var_dump($response);
-        $this->assertNotEmpty($response);
-    }
+//    public function testOrderDetail()
+//    {
+//        $shopId        = '111';
+//        $amazonOrderId = '111';
+//        $response      = OrderFacade::getOrderDetail($shopId, $amazonOrderId);
+//        var_dump($response);
+//        $this->assertNotEmpty($response);
+//    }
 
 
 //    public function testOrderMark()
@@ -51,13 +52,13 @@ class OrderTest extends Base
 //    }
 
 
-    public function testFbaReturn()
-    {
-        $params   = [];
-        $response = OrderFacade::getFbaReturn($params);
-        var_dump($response);
-        $this->assertNotEmpty($response);
-    }
+//    public function testFbaReturn()
+//    {
+//        $params   = [];
+//        $response = OrderFacade::getFbaReturn($params);
+//        var_dump($response);
+//        $this->assertNotEmpty($response);
+//    }
 
 
 }

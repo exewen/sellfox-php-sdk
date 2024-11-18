@@ -16,9 +16,9 @@ class AuthTest extends Base
     {
         $clientId     = getenv('SELLFOX_CLIENT_ID');
         $clientSecret = getenv('SELLFOX_CLIENT_SECRET');
-        $response     = AuthFacade::getToken($clientId, $clientSecret);
-        var_dump($response);
-        $this->assertNotEmpty($response);
+        $result       = AuthFacade::getToken($clientId, $clientSecret);
+        var_dump($result);
+        $this->assertNotEmpty($result);
     }
 
 

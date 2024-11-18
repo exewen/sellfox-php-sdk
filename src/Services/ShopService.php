@@ -19,10 +19,10 @@ class ShopService extends BaseService implements ShopInterface
         $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
     }
 
-    public function getShop(array $params): string
+    public function getShop(array $params): array
     {
         $response = $this->httpClient->post($this->driver, '/api/shop/pageList.json', $params);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }

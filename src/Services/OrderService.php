@@ -19,10 +19,10 @@ class OrderService extends BaseService implements OrderInterface
         $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
     }
 
-    public function getOrder(array $params, array $header = []): string
+    public function getOrder(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/order/pageList.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
@@ -34,7 +34,7 @@ class OrderService extends BaseService implements OrderInterface
             'amazonOrderId' => $amazonOrderId,
         ];
         $response = $this->httpClient->post($this->driver, '/api/order/detailByOrderId.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
@@ -42,7 +42,7 @@ class OrderService extends BaseService implements OrderInterface
     public function orderMark(array $params, array $header = []): string
     {
         $response = $this->httpClient->post($this->driver, '/api/feed/submitFeed.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
@@ -50,7 +50,7 @@ class OrderService extends BaseService implements OrderInterface
     public function getOrderMarkResult(array $params, array $header = []): string
     {
         $response = $this->httpClient->post($this->driver, '/api/feed/getFeedResponse.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
@@ -58,7 +58,7 @@ class OrderService extends BaseService implements OrderInterface
     public function getFbaReturn(array $params, array $header = [])
     {
         $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params, $header);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }

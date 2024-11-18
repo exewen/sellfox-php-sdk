@@ -22,7 +22,7 @@ class FinancialService extends BaseService implements FinancialInterface
     public function getShippingSettlement(array $params, array $header = []): string
     {
         $response = $this->httpClient->post($this->driver, '/api/financial/shippingSettlementPageList.json', $params);
-        $result   = json_decode($response);
+        $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }

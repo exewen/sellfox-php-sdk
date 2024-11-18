@@ -15,6 +15,7 @@ class ConfigRegister
         return [
             'dependencies' => [
                 Contract\AuthInterface::class      => Services\AuthService::class,
+                Contract\ShopInterface::class      => Services\ShopService::class,
                 Contract\OrderInterface::class     => Services\OrderService::class,
                 Contract\FbaInterface::class       => Services\FbaService::class,
                 Contract\ReportInterface::class    => Services\ReportService::class,
