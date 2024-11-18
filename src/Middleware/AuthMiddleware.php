@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace Exewen\Sellfox\Middleware;
 
-use Cassandra\Uuid;
 use Psr\Http\Message\RequestInterface;
-use GuzzleHttp\Psr7\Uri;
 
 class AuthMiddleware
 {

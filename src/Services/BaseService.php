@@ -23,7 +23,8 @@ class BaseService
             throw new SellfoxException('Sellfox:' . __FUNCTION__ . '响应格式异常');
         }
         if ($result['code'] !== $this->responseSuccessCode) {
-            throw new SellfoxException('Sellfox:' . __FUNCTION__ . '响应code异常(' . $result['code'] . ')');
+            $msg = $result['msg'] ?? '';
+            throw new SellfoxException('Sellfox:' . __FUNCTION__ . '响应code异常(' . $result['code'] . ') ' . $msg);
         }
     }
 

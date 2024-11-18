@@ -27,7 +27,7 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
-    public function getOrderDetail(string $shopId, string $amazonOrderId, array $header = []): string
+    public function getOrderDetail(string $shopId, string $amazonOrderId, array $header = []): array
     {
         $params   = [
             'shopId'        => $shopId,
@@ -39,7 +39,7 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
-    public function orderMark(array $params, array $header = []): string
+    public function orderMark(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/feed/submitFeed.json', $params, $header);
         $result   = json_decode($response, true);
@@ -47,7 +47,7 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
-    public function getOrderMarkResult(array $params, array $header = []): string
+    public function getOrderMarkResult(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/feed/getFeedResponse.json', $params, $header);
         $result   = json_decode($response, true);
@@ -55,7 +55,7 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
-    public function getFbaReturn(array $params, array $header = [])
+    public function getFbaReturn(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params, $header);
         $result   = json_decode($response, true);

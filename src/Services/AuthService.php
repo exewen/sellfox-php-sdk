@@ -38,7 +38,7 @@ class AuthService implements AuthInterface
     }
 
 
-    public function setAuth(string $clientId,string $clientSecret, string $accessToken, string $channel = SellfoxEnum::CHANNEL_API)
+    public function setAuth(string $clientId, string $clientSecret, string $accessToken, string $channel = SellfoxEnum::CHANNEL_API)
     {
         $this->config->set('http.channels.' . $channel . '.extra.client_id', $clientId);
         $this->config->set('http.channels.' . $channel . '.extra.client_secret', $clientSecret);

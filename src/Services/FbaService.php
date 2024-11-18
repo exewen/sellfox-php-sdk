@@ -17,7 +17,7 @@ class FbaService extends BaseService implements FbaInterface
     public function __construct(HttpClientInterface $httpClient, ConfigInterface $config)
     {
         $this->httpClient = $httpClient;
-        $this->driver     = $config->get('sellfox.'.SellfoxEnum::CHANNEL_API);
+        $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
     }
 
 

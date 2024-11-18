@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace ExewenTest\Sellfox;
 
-use Exewen\Sellfox\Facade\AuthFacade;
 use Exewen\Sellfox\Facade\OrderFacade;
 
 class OrderTest extends Base
@@ -20,18 +19,29 @@ class OrderTest extends Base
             'dateEnd'    => date("Y-m-d H:i:s", time()),
         ];
         $response = OrderFacade::getOrder($params);
-        var_dump($response);
         $this->assertNotEmpty($response);
     }
 
-//    public function testOrderDetail()
-//    {
-//        $shopId        = '111';
-//        $amazonOrderId = '111';
-//        $response      = OrderFacade::getOrderDetail($shopId, $amazonOrderId);
-//        var_dump($response);
-//        $this->assertNotEmpty($response);
-//    }
+    public function testOrderDetail()
+    {
+        $shopId        = '309113';
+        $amazonOrderId = '302-1734531-6885123';
+        $response      = OrderFacade::getOrderDetail($shopId, $amazonOrderId);
+        $this->assertNotEmpty($response);
+    }
+
+    public function testFbaReturn()
+    {
+        $params   = [
+//            'shopIdList' => [], // 可选
+            'pageNo'          => 1,
+            'pageSize'        => 5,
+            'returnStartDate' => date("Y-m-d", time() - 3600 * 24),
+            'returnEndDate'   => date("Y-m-d", time()),
+        ];
+        $response = OrderFacade::getFbaReturn($params);
+        $this->assertNotEmpty($response);
+    }
 
 
 //    public function testOrderMark()
@@ -47,15 +57,6 @@ class OrderTest extends Base
 //    {
 //        $params   = [];
 //        $response = OrderFacade::getOrderMarkResult($params);
-//        var_dump($response);
-//        $this->assertNotEmpty($response);
-//    }
-
-
-//    public function testFbaReturn()
-//    {
-//        $params   = [];
-//        $response = OrderFacade::getFbaReturn($params);
 //        var_dump($response);
 //        $this->assertNotEmpty($response);
 //    }
