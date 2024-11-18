@@ -3,31 +3,36 @@ declare(strict_types=1);
 
 namespace Exewen\Sellfox\Middleware;
 
+use Exewen\Config\Contract\ConfigInterface;
+use Exewen\Di\Container;
 use Psr\Http\Message\RequestInterface;
 
 class AuthMiddleware
 {
 //    private string $config;
+    private $appConfig;
     private $config;
     private $channel;
 
     public function __construct(string $channel, array $config)
     {
-        $this->channel = $channel;
-        $this->config  = $config;
+        $this->appConfig = Container::getInstance()->get(ConfigInterface::class);
+        $this->channel   = $channel;
+        $this->config    = $config;
     }
 
     public function __invoke(callable $handler): callable
     {
         return function (RequestInterface $request, array $options) use ($handler) {
-            $accessToken = $this->config['extra']['access_token'] ?? '';
-            $clientId    = $this->config['extra']['client_id'] ?? '';
-            $timestamp   = $this->getMillisTimestamp();
-            $nonce       = $this->generateNonce();
-            $method      = $request->getMethod();
-            $uri         = $request->getUri()->getPath();
-            $sign        = $this->getSign($accessToken, $clientId, $method, $nonce, $timestamp, $uri);
-            $queryParams = [
+            $this->config = $this->appConfig->get("http.channels.{$this->channel}"); // 刷新单例到最新配置
+            $accessToken  = $this->config['extra']['access_token'] ?? '';
+            $clientId     = $this->config['extra']['client_id'] ?? '';
+            $timestamp    = $this->getMillisTimestamp();
+            $nonce        = $this->generateNonce();
+            $method       = $request->getMethod();
+            $uri          = $request->getUri()->getPath();
+            $sign         = $this->getSign($accessToken, $clientId, $method, $nonce, $timestamp, $uri);
+            $queryParams  = [
                 'access_token' => $accessToken,
                 'client_id'    => $clientId,
                 'timestamp'    => $timestamp,
