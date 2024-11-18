@@ -9,7 +9,11 @@ use Exewen\Logger\LoggerProvider;
 use Exewen\Sellfox\Contract\OrderInterface;
 
 /**
- * @method static array getToken(string $clientId, string $clientSecret)
+ * @method static array getOrder(array $params, array $header = [])
+ * @method static array getOrderDetail(string $shopId, string $amazonOrderId, array $header = [])
+ * @method static array orderMark(array $params, array $header = [])
+ * @method static array getOrderMarkResult(array $params, array $header = [])
+ * @method static array getFbaReturn(array $params, array $header = [])
  */
 class OrderFacade extends Facade
 {

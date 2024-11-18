@@ -5,10 +5,14 @@ namespace Exewen\Sellfox\Contract;
 
 interface OrderInterface
 {
-    public function getOrder(string $clientId, string $clientSecret);
-    public function getOrderDetail(string $clientId, string $clientSecret);
-    public function getFbmOrder(string $clientId, string $clientSecret);
-    public function getFbmOrderDetail(string $clientId, string $clientSecret);
-    public function submitToPlatform(string $clientId, string $clientSecret);
+    public function getOrder(array $params, array $header = []);
+
+    public function getOrderDetail(string $shopId, string $amazonOrderId,  array $header = []);
+
+    public function orderMark(array $params, array $header = []);
+
+    public function getOrderMarkResult(array $params, array $header = []);
+
+    public function getFbaReturn(array $params, array $header = []);
 
 }

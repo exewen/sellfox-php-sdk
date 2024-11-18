@@ -5,8 +5,10 @@ namespace Exewen\Sellfox\Services;
 
 use Exewen\Config\Contract\ConfigInterface;
 use Exewen\Http\Contract\HttpClientInterface;
+use Exewen\Sellfox\Constants\SellfoxEnum;
+use Exewen\Sellfox\Contract\FbaInterface;
 
-class FbaService
+class FbaService extends BaseService implements FbaInterface
 {
     private $httpClient;
     private $driver;
@@ -15,14 +17,24 @@ class FbaService
     public function __construct(HttpClientInterface $httpClient, ConfigInterface $config)
     {
         $this->httpClient = $httpClient;
-        $this->driver     = $config->get('sellfox.channel_api');
+        $this->driver     = $config->get('sellfox.'.SellfoxEnum::CHANNEL_API);
     }
 
 
-    public function setShipments(array $params, array $header)
+    public function deliveryPlanCreate(array $params, array $header = [])
     {
-        $result = $this->httpClient->post($this->driver, $this->setShipmentsUrl, $params, $header);
-        return json_decode($result, true);
+        $response = $this->httpClient->post($this->driver, '/api/fba/deliveryPlan/create.json', $params, $header);
+        $result   = json_decode($response);
+        $this->checkResponse($result);
+        return $result['data'];
+    }
+
+    public function createShipment(array $params, array $header = [])
+    {
+        $response = $this->httpClient->post($this->driver, '/api/fbaShipment/createShipment.json', $params, $header);
+        $result   = json_decode($response);
+        $this->checkResponse($result);
+        return $result['data'];
     }
 
 }

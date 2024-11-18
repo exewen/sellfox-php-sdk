@@ -5,10 +5,9 @@ namespace Exewen\Sellfox\Contract;
 
 interface FbaInterface
 {
-    public function deliveryPlanCreate(string $clientId, string $clientSecret);
+    public function deliveryPlanCreate(array $params, array $header = []);
 
-    public function createShipment(string $clientId, string $clientSecret);
+    public function createShipment(array $params, array $header = []);
 
-    public function getShipment(string $clientId, string $clientSecret);
 
 }

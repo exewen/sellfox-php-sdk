@@ -9,7 +9,7 @@ use Exewen\Logger\LoggerProvider;
 use Exewen\Sellfox\Contract\ShopInterface;
 
 /**
- * @method static array getToken(string $clientId, string $clientSecret)
+ * @method static array getShop(array $params)
  */
 class ShopFacade extends Facade
 {

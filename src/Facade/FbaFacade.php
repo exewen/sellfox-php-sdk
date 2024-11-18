@@ -9,7 +9,8 @@ use Exewen\Logger\LoggerProvider;
 use Exewen\Sellfox\Contract\AuthInterface;
 
 /**
- * @method static array getToken(string $clientId, string $clientSecret)
+ * @method static array deliveryPlanCreate(array $params, array $header = [])
+ * @method static array createShipment(array $params, array $header = [])
  */
 class FbaFacade extends Facade
 {

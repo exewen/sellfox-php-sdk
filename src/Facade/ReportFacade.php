@@ -9,7 +9,7 @@ use Exewen\Logger\LoggerProvider;
 use Exewen\Sellfox\Contract\ReportInterface;
 
 /**
- * @method static array getToken(string $clientId, string $clientSecret)
+ * @method static array getFbaStorageFee(array $params, array $header = [])
  */
 class ReportFacade extends Facade
 {

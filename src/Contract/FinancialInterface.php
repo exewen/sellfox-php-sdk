@@ -5,6 +5,6 @@ namespace Exewen\Sellfox\Contract;
 
 interface FinancialInterface
 {
-    public function getShippingSettlement(string $clientId, string $clientSecret);
+    public function getShippingSettlement(array $params, array $header = []);
 
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Exewen\Sellfox;
 
+use Exewen\Http\Middleware\LogMiddleware;
 use Exewen\Sellfox\Constants\SellfoxEnum;
+use Exewen\Sellfox\Middleware\AuthMiddleware;
 
 class ConfigRegister
 {
@@ -20,12 +22,13 @@ class ConfigRegister
             ],
 
             'sellfox' => [
-                'channel_api' => SellfoxEnum::CHANNEL,
+                SellfoxEnum::CHANNEL_AUTH => SellfoxEnum::CHANNEL_AUTH,
+                SellfoxEnum::CHANNEL_API  => SellfoxEnum::CHANNEL_API,
             ],
 
             'http' => [
                 'channels' => [
-                    SellfoxEnum::CHANNEL => [
+                    SellfoxEnum::CHANNEL_AUTH => [
                         'verify'          => false,
                         'ssl'             => true,
                         'host'            => 'openapi.sellfox.com',
@@ -33,7 +36,28 @@ class ConfigRegister
                         'prefix'          => null,
                         'connect_timeout' => 3,
                         'timeout'         => 20,
-                        'handler'         => [],
+                        'handler'         => [
+                            LogMiddleware::class,
+                        ],
+                        'extra'           => [],
+                        'proxy'           => [
+                            'switch' => false,
+                            'http'   => '127.0.0.1:8888',
+                            'https'  => '127.0.0.1:8888'
+                        ]
+                    ],
+                    SellfoxEnum::CHANNEL_API  => [
+                        'verify'          => false,
+                        'ssl'             => true,
+                        'host'            => 'openapi.sellfox.com',
+                        'port'            => null,
+                        'prefix'          => null,
+                        'connect_timeout' => 3,
+                        'timeout'         => 20,
+                        'handler'         => [
+                            AuthMiddleware::class,
+                            LogMiddleware::class,
+                        ],
                         'extra'           => [],
                         'proxy'           => [
                             'switch' => false,

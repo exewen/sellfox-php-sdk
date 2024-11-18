@@ -9,7 +9,7 @@ use Exewen\Logger\LoggerProvider;
 use Exewen\Sellfox\Contract\FinancialInterface;
 
 /**
- * @method static array getToken(string $clientId, string $clientSecret)
+ * @method static array getShippingSettlement(array $params, array $header = [])
  */
 class FinancialFacade extends Facade
 {

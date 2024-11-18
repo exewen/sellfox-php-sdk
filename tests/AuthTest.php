@@ -5,7 +5,7 @@ namespace ExewenTest\Sellfox;
 
 use Exewen\Sellfox\Facade\AuthFacade;
 
-class SellfoxTest extends Base
+class AuthTest extends Base
 {
 
     /**
