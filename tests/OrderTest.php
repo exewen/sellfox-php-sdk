@@ -30,18 +30,38 @@ class OrderTest extends Base
         $this->assertNotEmpty($response);
     }
 
-    public function testFbaReturn()
+    public function testFmbOrder()
     {
         $params   = [
-//            'shopIdList' => [], // 可选
-            'pageNo'          => 1,
-            'pageSize'        => 5,
-            'returnStartDate' => date("Y-m-d", time() - 3600 * 24),
-            'returnEndDate'   => date("Y-m-d", time()),
+            'shopIdList'        => [], // 可选
+            'pageNo'            => 1,
+            'pageSize'          => 5,
+            'purchaseDateStart' => date("Y-m-d", time() - 3600 * 24),
+            'purchaseDateEnd'   => date("Y-m-d", time()),
         ];
-        $response = OrderFacade::getFbaReturn($params);
+        $response = OrderFacade::getFmbOrder($params);
         $this->assertNotEmpty($response);
     }
+
+    public function testFmbOrderDetail()
+    {
+        $packageSn = 'P1PS4XGT00095';
+        $response  = OrderFacade::getFmbOrderDetail($packageSn);
+        $this->assertNotEmpty($response);
+    }
+
+//    public function testFbaReturn()
+//    {
+//        $params   = [
+////            'shopIdList' => [], // 可选
+//            'pageNo'          => 1,
+//            'pageSize'        => 5,
+//            'returnStartDate' => date("Y-m-d", time() - 3600 * 24),
+//            'returnEndDate'   => date("Y-m-d", time()),
+//        ];
+//        $response = OrderFacade::getFbaReturn($params);
+//        $this->assertNotEmpty($response);
+//    }
 
 
 //    public function testOrderMark()

@@ -39,6 +39,25 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
+    public function getFmbOrder(array $params, array $header = []): array
+    {
+        $response = $this->httpClient->post($this->driver, '/api/packageShip/getPackagePage.json', $params, $header);
+        $result   = json_decode($response, true);
+        $this->checkResponse($result);
+        return $result['data'];
+    }
+
+    public function getFmbOrderDetail(string $packageSn, array $header = []): array
+    {
+        $params   = [
+            'packageSn' => $packageSn,
+        ];
+        $response = $this->httpClient->post($this->driver, '/api/packageShip/packageDetail.json', $params, $header);
+        $result   = json_decode($response, true);
+        $this->checkResponse($result);
+        return $result['data'];
+    }
+
     public function orderMark(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/feed/submitFeed.json', $params, $header);
