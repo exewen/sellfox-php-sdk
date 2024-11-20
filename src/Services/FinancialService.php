@@ -19,7 +19,7 @@ class FinancialService extends BaseService implements FinancialInterface
         $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
     }
 
-    public function getShippingSettlement(array $params, array $header = []): string
+    public function getShippingSettlement(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/financial/shippingSettlementPageList.json', $params);
         $result   = json_decode($response, true);
