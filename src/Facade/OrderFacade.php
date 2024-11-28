@@ -13,8 +13,7 @@ use Exewen\Sellfox\Contract\OrderInterface;
  * @method static array getOrderDetail(string $shopId, string $amazonOrderId, array $header = [])
  * @method static array getFmbOrder(array $params, array $header = [])
  * @method static array getFmbOrderDetail(string $packageSn, array $header = [])
- * @method static array orderMark(array $params, array $header = [])
- * @method static array getOrderMarkResult(array $params, array $header = [])
+ * @method static array submitToPlatform(array $params, array $header = [])
  * @method static array getFbaReturn(array $params, array $header = [])
  */
 class OrderFacade extends Facade

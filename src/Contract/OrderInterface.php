@@ -12,9 +12,7 @@ interface OrderInterface
 
     public function getFmbOrderDetail(string $packageSn, array $header = []);
 
-    public function orderMark(array $params, array $header = []);
-
-    public function getOrderMarkResult(array $params, array $header = []);
+    public function submitToPlatform(array $params, array $header = []);
 
     public function getFbaReturn(array $params, array $header = []);
 

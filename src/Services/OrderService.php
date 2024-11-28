@@ -58,21 +58,14 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'];
     }
 
-    public function orderMark(array $params, array $header = []): array
+    public function submitToPlatform(array $params, array $header = []): array
     {
-        $response = $this->httpClient->post($this->driver, '/api/feed/submitFeed.json', $params, $header);
+        $response = $this->httpClient->post($this->driver, '/api/packageShip/submitToPlatform.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
     }
 
-    public function getOrderMarkResult(array $params, array $header = []): array
-    {
-        $response = $this->httpClient->post($this->driver, '/api/feed/getFeedResponse.json', $params, $header);
-        $result   = json_decode($response, true);
-        $this->checkResponse($result);
-        return $result['data'];
-    }
 
     public function getFbaReturn(array $params, array $header = []): array
     {
