@@ -19,9 +19,9 @@ class ReportService extends BaseService implements ReportInterface
         $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
     }
 
-    public function getFbaStorageFee(array $params, array $header = []): string
+    public function getFbaReturn(array $params, array $header = []): array
     {
-        $response = $this->httpClient->get($this->driver, '/api/report/getFbaStorageFeePage.json', $params);
+        $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];

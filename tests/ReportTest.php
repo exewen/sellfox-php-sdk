@@ -17,7 +17,7 @@ class ReportTest extends Base
     {
         $params   = [
         ];
-        $response = ReportFacade::getFbaStorageFee($params);
+        $response = ReportFacade::getFbaReturn($params);
         var_dump($response);
         $this->assertNotEmpty($response);
     }
