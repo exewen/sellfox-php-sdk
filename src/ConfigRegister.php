@@ -25,6 +25,7 @@ class ConfigRegister
             'sellfox' => [
                 SellfoxEnum::CHANNEL_AUTH => SellfoxEnum::CHANNEL_AUTH,
                 SellfoxEnum::CHANNEL_API  => SellfoxEnum::CHANNEL_API,
+                SellfoxEnum::CHANNEL_DETAIL_API  => SellfoxEnum::CHANNEL_DETAIL_API,
             ],
 
             'http' => [
