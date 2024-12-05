@@ -7,5 +7,6 @@ class SellfoxEnum
 {
     const CHANNEL_AUTH = 'sellfox_auth';
     const CHANNEL_API = 'sellfox_api';
+    const CHANNEL_DETAIL_API = 'sellfox_detail_api';
 
 }

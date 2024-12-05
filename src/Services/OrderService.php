@@ -12,11 +12,13 @@ class OrderService extends BaseService implements OrderInterface
 {
     private $httpClient;
     private $driver;
+    private $detailDriver;
 
     public function __construct(HttpClientInterface $httpClient, ConfigInterface $config)
     {
-        $this->httpClient = $httpClient;
-        $this->driver     = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
+        $this->httpClient   = $httpClient;
+        $this->driver       = $config->get('sellfox.' . SellfoxEnum::CHANNEL_API);
+        $this->detailDriver = $config->get('sellfox.' . SellfoxEnum::CHANNEL_DETAIL_API);
     }
 
     public function getOrder(array $params, array $header = []): array
@@ -33,7 +35,7 @@ class OrderService extends BaseService implements OrderInterface
             'shopId'        => $shopId,
             'amazonOrderId' => $amazonOrderId,
         ];
-        $response = $this->httpClient->post($this->driver, '/api/order/detailByOrderId.json', $params, $header);
+        $response = $this->httpClient->post($this->detailDriver, '/api/order/detailByOrderId.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
@@ -52,7 +54,7 @@ class OrderService extends BaseService implements OrderInterface
         $params   = [
             'packageSn' => $packageSn,
         ];
-        $response = $this->httpClient->post($this->driver, '/api/packageShip/packageDetail.json', $params, $header);
+        $response = $this->httpClient->post($this->detailDriver, '/api/packageShip/packageDetail.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
         return $result['data'];
