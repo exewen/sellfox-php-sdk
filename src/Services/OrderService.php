@@ -63,9 +63,7 @@ class OrderService extends BaseService implements OrderInterface
     public function submitToPlatform(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/packageShip/submitToPlatform.json', $params, $header);
-        $result   = json_decode($response, true);
-        $this->checkResponse($result);
-        return $result['data'];
+        return json_decode($response, true);
     }
 
 
