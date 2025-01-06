@@ -34,7 +34,7 @@ class AuthService implements AuthInterface
         if (!isset($result['data']['access_token'])) {
             throw new SellfoxException('Sellfox:' . __FUNCTION__ . '异常');
         }
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
 

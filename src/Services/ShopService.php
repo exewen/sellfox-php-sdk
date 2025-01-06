@@ -24,7 +24,7 @@ class ShopService extends BaseService implements ShopInterface
         $response = $this->httpClient->post($this->driver, '/api/shop/pageList.json', $params);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
 

@@ -26,7 +26,7 @@ class OrderService extends BaseService implements OrderInterface
         $response = $this->httpClient->post($this->driver, '/api/order/pageList.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
     public function getOrderDetail(string $shopId, string $amazonOrderId, array $header = []): array
@@ -38,7 +38,7 @@ class OrderService extends BaseService implements OrderInterface
         $response = $this->httpClient->post($this->detailDriver, '/api/order/detailByOrderId.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
     public function getFmbOrder(array $params, array $header = []): array
@@ -46,7 +46,7 @@ class OrderService extends BaseService implements OrderInterface
         $response = $this->httpClient->post($this->driver, '/api/packageShip/getPackagePage.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
     public function getFmbOrderDetail(string $packageSn, array $header = []): array
@@ -57,7 +57,7 @@ class OrderService extends BaseService implements OrderInterface
         $response = $this->httpClient->post($this->detailDriver, '/api/packageShip/packageDetail.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
     public function submitToPlatform(array $params, array $header = []): array
@@ -72,7 +72,7 @@ class OrderService extends BaseService implements OrderInterface
         $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params, $header);
         $result   = json_decode($response, true);
         $this->checkResponse($result);
-        return $result['data'];
+        return $result['data'] ?? [];
     }
 
 }
