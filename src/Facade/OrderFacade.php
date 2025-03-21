@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Exewen\Sellfox\Facade;
 
+use Exewen\Facades\AppFacade;
 use Exewen\Facades\Facade;
 use Exewen\Http\HttpProvider;
 use Exewen\Logger\LoggerProvider;
@@ -25,7 +26,7 @@ class OrderFacade extends Facade
 
     public static function getProviders(): array
     {
-        self::getContainer()->singleton(OrderInterface::class);
+        AppFacade::getContainer()->singleton(OrderInterface::class);
 
         return [
             LoggerProvider::class,
