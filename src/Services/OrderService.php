@@ -24,7 +24,7 @@ class OrderService extends BaseService implements OrderInterface
     public function getOrder(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/order/pageList.json', $params, $header);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
@@ -36,7 +36,7 @@ class OrderService extends BaseService implements OrderInterface
             'amazonOrderId' => $amazonOrderId,
         ];
         $response = $this->httpClient->post($this->detailDriver, '/api/order/detailByOrderId.json', $params, $header);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
@@ -44,7 +44,7 @@ class OrderService extends BaseService implements OrderInterface
     public function getFmbOrder(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/packageShip/getPackagePage.json', $params, $header);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
@@ -55,7 +55,7 @@ class OrderService extends BaseService implements OrderInterface
             'packageSn' => $packageSn,
         ];
         $response = $this->httpClient->post($this->detailDriver, '/api/packageShip/packageDetail.json', $params, $header);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
@@ -63,14 +63,14 @@ class OrderService extends BaseService implements OrderInterface
     public function submitToPlatform(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/packageShip/submitToPlatform.json', $params, $header);
-        return json_decode($response, true);
+        return json_decode($response->getBody()->getContents(), true);
     }
 
 
     public function getFbaReturn(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params, $header);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }

@@ -22,7 +22,7 @@ class ReportService extends BaseService implements ReportInterface
     public function getFbaReturn(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/order/api/report/fbaReturn/pageList.json', $params);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
@@ -30,7 +30,7 @@ class ReportService extends BaseService implements ReportInterface
     public function getFbaStorageFee(array $params, array $header = []): array
     {
         $response = $this->httpClient->post($this->driver, '/api/report/getFbaStorageFeePage.json', $params);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }

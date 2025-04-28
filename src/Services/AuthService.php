@@ -30,7 +30,7 @@ class AuthService implements AuthInterface
             'grant_type'    => 'client_credentials',
         ];
         $response = $this->httpClient->get($this->driver, '/api/oauth/v2/token.json', $params);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         if (!isset($result['data']['access_token'])) {
             throw new SellfoxException('Sellfox:' . __FUNCTION__ . '异常');
         }

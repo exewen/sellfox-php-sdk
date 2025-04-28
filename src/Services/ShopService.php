@@ -22,7 +22,7 @@ class ShopService extends BaseService implements ShopInterface
     public function getShop(array $params): array
     {
         $response = $this->httpClient->post($this->driver, '/api/shop/pageList.json', $params);
-        $result   = json_decode($response, true);
+        $result   = json_decode($response->getBody()->getContents(), true);
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
