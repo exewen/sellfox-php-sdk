@@ -20,17 +20,18 @@ class ConfigRegister
                 Contract\FbaInterface::class       => Services\FbaService::class,
                 Contract\ReportInterface::class    => Services\ReportService::class,
                 Contract\FinancialInterface::class => Services\FinancialService::class,
+                Contract\InboundInterface::class   => Services\InboundService::class,
             ],
 
             'sellfox' => [
-                SellfoxEnum::CHANNEL_AUTH => SellfoxEnum::CHANNEL_AUTH,
-                SellfoxEnum::CHANNEL_API  => SellfoxEnum::CHANNEL_API,
-                SellfoxEnum::CHANNEL_DETAIL_API  => SellfoxEnum::CHANNEL_DETAIL_API,
+                SellfoxEnum::CHANNEL_AUTH       => SellfoxEnum::CHANNEL_AUTH,
+                SellfoxEnum::CHANNEL_API        => SellfoxEnum::CHANNEL_API,
+                SellfoxEnum::CHANNEL_DETAIL_API => SellfoxEnum::CHANNEL_DETAIL_API,
             ],
 
             'http' => [
                 'channels' => [
-                    SellfoxEnum::CHANNEL_AUTH => [
+                    SellfoxEnum::CHANNEL_AUTH       => [
                         'verify'          => false,
                         'ssl'             => true,
                         'host'            => 'openapi.sellfox.com',
@@ -48,7 +49,7 @@ class ConfigRegister
                             'https'  => '127.0.0.1:8888'
                         ]
                     ],
-                    SellfoxEnum::CHANNEL_API  => [
+                    SellfoxEnum::CHANNEL_API        => [
                         'verify'          => false,
                         'ssl'             => true,
                         'host'            => 'openapi.sellfox.com',
@@ -67,7 +68,7 @@ class ConfigRegister
                             'https'  => '127.0.0.1:8888'
                         ]
                     ],
-                    SellfoxEnum::CHANNEL_DETAIL_API  => [
+                    SellfoxEnum::CHANNEL_DETAIL_API => [
                         'verify'          => false,
                         'ssl'             => true,
                         'host'            => 'openapi.sellfox.com',
