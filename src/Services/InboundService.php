@@ -196,7 +196,7 @@ class InboundService extends BaseService implements InboundInterface
         return $result['data'] ?? [];
     }
 
-    public function updateShipmentTrackingDetails(array $params, array $header = []): array
+    public function updateShipmentTrackingDetails(array $params, array $header = [])
     {
         $response = $this->httpClient->post($this->driver, '/api/inbound/putTrackingDetails.json', $params, $header);
         $contents = $response->getBody()->getContents();
