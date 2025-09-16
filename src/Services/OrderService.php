@@ -75,12 +75,4 @@ class OrderService extends BaseService implements OrderInterface
         return $result['data'] ?? [];
     }
 
-    public function getProduct(array $params, array $header = []): array
-    {
-        $response = $this->httpClient->post($this->driver, '/api/order/api/product/pageList.json', $params, $header);
-        $result   = json_decode($response->getBody()->getContents(), true);
-        $this->checkResponse($result);
-        return $result['data'] ?? [];
-    }
-
 }

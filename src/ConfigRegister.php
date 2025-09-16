@@ -21,6 +21,7 @@ class ConfigRegister
                 Contract\ReportInterface::class    => Services\ReportService::class,
                 Contract\FinancialInterface::class => Services\FinancialService::class,
                 Contract\InboundInterface::class   => Services\InboundService::class,
+                Contract\ListingInterface::class   => Services\ListingService::class,
             ],
 
             'sellfox' => [
