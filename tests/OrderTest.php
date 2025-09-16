@@ -80,6 +80,17 @@ class OrderTest extends Base
 //        var_dump($response);
 //        $this->assertNotEmpty($response);
 //    }
-
-
+	
+	
+	public function testProduct()
+	{
+		$params   = [
+			'pageNo'            => 1,
+			'pageSize'          => 5,
+			'modifiedTimeStart' => date("Y-m-d H:i:s", time() - 3600 * 24),
+			'modifiedTimeEnd'   => date("Y-m-d H:i:s", time()),
+		];
+		$response  = OrderFacade::getProduct($params);
+		$this->assertNotEmpty($response);
+	}
 }

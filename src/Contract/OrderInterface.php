@@ -16,4 +16,6 @@ interface OrderInterface
 
     public function getFbaReturn(array $params, array $header = []);
 
+    public function getProduct(array $params, array $header = []);
+
 }
