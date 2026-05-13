@@ -50,4 +50,25 @@ class FinancialService extends BaseService implements FinancialInterface
         $this->checkResponse($result);
         return $result['data'] ?? [];
     }
+    public function getDeferredAmountList(array $params, array $header = []): array
+    {
+        $response = $this->httpClient->post($this->driver, '/api/finAmz/deferredOrder/deferredAmountList.json', $params);
+        $result   = json_decode($response->getBody()->getContents(), true);
+        $this->checkResponse($result);
+        return $result['data'] ?? [];
+    }
+    public function getDeferredOrderList(array $params, array $header = []): array
+    {
+        $response = $this->httpClient->post($this->driver, '/api/finAmz/deferredOrder/deferredOrderList.json', $params);
+        $result   = json_decode($response->getBody()->getContents(), true);
+        $this->checkResponse($result);
+        return $result['data'] ?? [];
+    }
+    public function getRenderMonthEndDelayList(array $params, array $header = []): array
+    {
+        $response = $this->httpClient->post($this->driver, '/api/finAmz/deferredOrder/renderMonthEndDelayList.json', $params);
+        $result   = json_decode($response->getBody()->getContents(), true);
+        $this->checkResponse($result);
+        return $result['data'] ?? [];
+    }
 }
